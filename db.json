@@ -1,11 +1,6 @@
 {
   "Tasks": [
     {
-      "id": 1,
-      "task": "umyj dupe",
-      "done": false
-    },
-    {
       "id": 2,
       "task": "weź się",
       "done": true
@@ -29,6 +24,16 @@
       "task": "dupa",
       "done": false,
       "id": 7
+    },
+    {
+      "task": "pietruszka",
+      "done": false,
+      "id": 8
+    },
+    {
+      "task": "umyj dupe",
+      "done": false,
+      "id": 9
     }
   ]
 }
