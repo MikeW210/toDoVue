@@ -28,6 +28,7 @@ export default {
           }
             axios.post('http://localhost:3000/Tasks', { task: this.taskText, done:this.done }).then(response => this.id = response.data.id)
             this.taskText = ""
+            axios.get('http://localhost:3000/Tasks')
       }
   }
 };

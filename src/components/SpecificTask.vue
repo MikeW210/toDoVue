@@ -1,12 +1,14 @@
 <template>
-    <div>
+    <div class="task">
         <h2>
-            {{specificTasks.text}}
+            {{specificTask.task}}
+            <i @click="onDelete(specificTask.id)" >wykasuj</i>
         </h2>
     </div>
 </template>
 
-<script>
+<script>import axios from "axios"
+
 export default {
     name:"SpecificTask",
     data() {
@@ -16,11 +18,20 @@ export default {
         
     },
     props: {
-        specificTasks: Object,
+        specificTask: Object,
     },
+    methods:{
+        onDelete(id){
+            axios.delete("http://localhost:3000/Tasks/" + id)
+            
+        }
+    }
 }
 </script>
 
 <style scoped>
+.task{
+    background-color: blanchedalmond;
+}
 
 </style>

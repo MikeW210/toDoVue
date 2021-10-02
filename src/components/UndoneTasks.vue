@@ -1,16 +1,15 @@
 <template>
   <h1>Undone Tasks</h1>
-  <ul>
-    <template v-for="doneTask in doneTasks" :key="doneTask.id">
-      <li v-if="!doneTask.done">
-        {{ doneTask.task }}
-      </li>
-    </template>
-  </ul>
+  <template v-for="doneTask in doneTasks" :key="doneTask.id">
+    <p v-if="!doneTask.done">
+      <SpecificTask :specificTask="doneTask" />
+    </p>
+  </template>
 </template>
 
 <script>
 import axios from "axios";
+import SpecificTask from "./SpecificTask.vue";
 export default {
   data() {
     return {
@@ -18,12 +17,14 @@ export default {
       done: false,
     };
   },
+  components: {
+    SpecificTask,
+  },
   async created() {
     try {
-      const res = await axios
-        .get("http://localhost:3000/Tasks", {done: false})
-        
-        this.doneTasks = res.data
+      const res = await axios.get("http://localhost:3000/Tasks");
+
+      this.doneTasks = res.data;
       console.log(this.doneTasks);
     } catch (e) {
       alert(e);
