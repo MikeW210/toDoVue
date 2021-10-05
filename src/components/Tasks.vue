@@ -1,21 +1,32 @@
 <template>
-  <done-tasks />
-  <undone-tasks />
+  <DoneTasks :doneTasks="specificTasks" />
+  <UndoneTasks
+    @delete-task="$emit('delete-task', specificTask.id)"
+    v-bind:undoneTasks="specificTasks"
+  />
 </template>
 
 <script>
-import DoneTasks from "./DoneTasks.vue"
-import UndoneTasks from "./UndoneTasks.vue"
+import DoneTasks from "./DoneTasks.vue";
+import UndoneTasks from "./UndoneTasks.vue";
 export default {
-   name: "Tasks",
-   props: {
-       tasks: Array
+  data() {
+    return {
+      specificTasks: [],
+    };
+  },
+  name: "Tasks",
+  props: {
+    tasks: Array,
+  },
 
-   },
-    
-    components: {
-        DoneTasks,UndoneTasks
-    }
-   
-}
+  components: {
+    DoneTasks,
+    UndoneTasks,
+  },
+  emits: ["delete-task"],
+  created() {
+    this.specificTasks = this.tasks;
+  },
+};
 </script>
