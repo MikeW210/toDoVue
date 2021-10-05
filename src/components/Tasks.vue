@@ -1,8 +1,13 @@
 <template>
-  <DoneTasks :doneTasks="specificTasks" />
   <UndoneTasks
-    @delete-task="$emit('delete-task', specificTask.id)"
-    v-bind:undoneTasks="specificTasks"
+    @change-status="changeStatus"
+    @delete-task="deleteTask"
+    :undoneTasks="specificTasks"
+  />
+  <DoneTasks
+    @change-status="changeStatus"
+    @delete-task="deleteTask"
+    :doneTasks="specificTasks"
   />
 </template>
 
@@ -24,9 +29,24 @@ export default {
     DoneTasks,
     UndoneTasks,
   },
-  emits: ["delete-task"],
+  emits: ["delete-task", "change-status"],
   created() {
     this.specificTasks = this.tasks;
+    console.log(this.specificTasks + "created w tasks");
+  },
+  methods: {
+    deleteTask(id) {
+      const taskToDelete = this.specificTasks.find((task) => task.id === id);
+      console.log(taskToDelete.id);
+      this.$emit("delete-task", taskToDelete.id);
+    },
+    changeStatus(id) {
+      const taskToChangeStatus = this.specificTasks.find(
+        (task) => task.id === id
+      );
+      console.log(taskToChangeStatus.id);
+      this.$emit("change-status", taskToChangeStatus.id);
+    },
   },
 };
 </script>

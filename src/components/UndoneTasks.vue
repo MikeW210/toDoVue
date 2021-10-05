@@ -3,7 +3,8 @@
   <template v-bind:key="undoneTask.id" v-for="undoneTask in undoneTasks">
     <p :key="undoneTask.done" v-if="!undoneTask.done">
       <SpecificTask
-        @delete-task="$emit('delete-task', specificTask.id)"
+        @change-status="this.$emit('change-status', undoneTask.id)"
+        @delete-task="$emit('delete-task', undoneTask.id)"
         :specificTask="undoneTask"
       />
     </p>
@@ -20,6 +21,6 @@ export default {
   components: {
     SpecificTask,
   },
-  emits: ["delete-task"],
+  emits: ["delete-task", "change-status"],
 };
 </script>

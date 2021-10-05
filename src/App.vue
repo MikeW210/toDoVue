@@ -1,7 +1,11 @@
 <template>
   <div class="container">
     <AddTask @add-task="addTask" />
-    <Tasks @delete-task="deleteTask()" v-bind:tasks="tasks" />
+    <Tasks
+      @delete-task="deleteTask"
+      @change-status="changeStatus"
+      :tasks="tasks"
+    />
   </div>
 </template>
 
@@ -17,36 +21,46 @@ export default {
   },
   data() {
     return {
-      tasks: [
-        {
-          id: 1,
-          text: "umyj dupe",
-          done: false,
-        },
-        {
-          id: 2,
-          text: "Brawo umyłeś dupę!",
-          done: true,
-        },
-
-        {
-          id: 3,
-          text: "Weź no się za nogi bocianie",
-          done: false,
-        },
-      ],
+      tasks: [],
     };
   },
   methods: {
     addTask(task) {
       console.log(task);
       this.tasks.push(task);
-      console.log(this.tasks);
+      console.log(this.tasks + "dodaes task");
     },
     deleteTask(id) {
-      alert("r u sure?");
-      console.log(id);
+      console.log(id + "dupa");
+      this.tasks = this.tasks.filter((task) => task.id !== id);
+      console.log(this.tasks + "wyebales task");
     },
+    changeStatus(id) {
+      console.log("chcesz zmienic task" + id);
+      this.tasks = this.tasks.map((task) =>
+        task.id === id ? { ...task, done: !task.done } : task
+      );
+    },
+  },
+  created() {
+    this.tasks = [
+      {
+        id: 1,
+        text: "umyj dupe",
+        done: false,
+      },
+      {
+        id: 2,
+        text: "Brawo umyłeś dupę!",
+        done: true,
+      },
+
+      {
+        id: 3,
+        text: "Weź no się za nogi bocianie",
+        done: false,
+      },
+    ];
   },
 };
 </script>
