@@ -21,7 +21,24 @@ export default {
   },
   data() {
     return {
-      tasks: [],
+      tasks: [
+        {
+          id: 1,
+          text: "umyj dupe",
+          done: false,
+        },
+        {
+          id: 2,
+          text: "Brawo umyłeś dupę!",
+          done: true,
+        },
+
+        {
+          id: 3,
+          text: "Weź no się za nogi bocianie",
+          done: false,
+        },
+      ],
     };
   },
   methods: {
@@ -33,35 +50,22 @@ export default {
     deleteTask(id) {
       console.log(id + "dupa");
       this.tasks = this.tasks.filter((task) => task.id !== id);
-      console.log(this.tasks + "wyebales task");
+      console.log(this.tasks);
+      console.log("wyjebales task");
     },
     changeStatus(id) {
       console.log("chcesz zmienic task" + id);
       this.tasks = this.tasks.map((task) =>
         task.id === id ? { ...task, done: !task.done } : task
       );
+      console.log(this.tasks);
     },
   },
-  created() {
-    this.tasks = [
-      {
-        id: 1,
-        text: "umyj dupe",
-        done: false,
-      },
-      {
-        id: 2,
-        text: "Brawo umyłeś dupę!",
-        done: true,
-      },
+  // created() {
+  //   this.tasks = [
 
-      {
-        id: 3,
-        text: "Weź no się za nogi bocianie",
-        done: false,
-      },
-    ];
-  },
+  //   ];
+  // },
 };
 </script>
 
