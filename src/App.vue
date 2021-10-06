@@ -45,8 +45,9 @@ export default {
     addTask(task) {
       console.log(task);
       this.tasks.push(task);
-      console.log(this.tasks + "dodaes task");
+      console.log(this.tasks, "dodaes task");
     },
+
     deleteTask(id) {
       console.log(id + "dupa");
       this.tasks = this.tasks.filter((task) => task.id !== id);
