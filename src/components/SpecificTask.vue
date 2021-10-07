@@ -4,7 +4,7 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
   />
   <div
-    @dblclick="this.$emit('change-status', specificTask.id)"
+    @dblclick="$emit('change-status', specificTask.id)"
     :class="[specificTask.done ? 'changedStatus' : '', 'task']"
   >
     <h2 class="list-group-item">

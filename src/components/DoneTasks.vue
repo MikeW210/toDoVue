@@ -3,7 +3,7 @@
   <template v-for="doneTask in doneTasks" :key="doneTask.id">
     <p :key="doneTask.id" v-if="doneTask.done">
       <SpecificTask
-        @change-status="this.$emit('change-status', doneTask.id)"
+        @change-status="$emit('change-status', doneTask.id)"
         @delete-task="$emit('delete-task', doneTask.id)"
         :specificTask="doneTask"
       />

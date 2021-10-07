@@ -6,9 +6,12 @@
         type="text"
         class="input"
         v-model="taskText"
+        minlength="3"
         placeholder="Add taks to do"
+        required
+        maxlength="70"
       />
-      <input type="submit" value="Add task" />
+      <input minlength="3" type="submit" value="Add task" />
     </form>
   </div>
 </template>
@@ -25,10 +28,6 @@ export default {
   methods: {
     onSubmit(e) {
       e.preventDefault();
-      if (!this.taskText) {
-        alert("You didnt put any text");
-        return;
-      }
       const newTask = {
         id: Math.floor(Math.random() * 1000),
         text: this.taskText,

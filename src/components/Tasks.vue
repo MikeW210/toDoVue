@@ -2,12 +2,12 @@
   <UndoneTasks
     @change-status="changeStatus"
     @delete-task="deleteTask"
-    :undoneTasks="showTasks"
+    :undoneTasks="tasks"
   />
   <DoneTasks
     @change-status="changeStatus"
     @delete-task="deleteTask"
-    :doneTasks="showTasks"
+    :doneTasks="tasks"
   />
 </template>
 
@@ -30,15 +30,15 @@ export default {
     UndoneTasks,
   },
   emits: ["delete-task", "change-status"],
-  computed: {
-    showTasks() {
-      return this.tasks;
-    },
-  },
-  created() {
-    this.specificTasks = this.tasks;
-    console.log(this.specificTasks + "created w tasks");
-  },
+  // computed: {
+  //   showTasks() {
+  //     return this.tasks;
+  //   },
+  // },
+  // created() {
+  //   this.specificTasks = this.tasks;
+  //   console.log(this.specificTasks + "created w tasks");
+  // },
   methods: {
     // deleteTask(id) {
     //   console.log(id + "dupa");
