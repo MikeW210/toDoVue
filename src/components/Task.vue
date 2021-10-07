@@ -4,13 +4,13 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
   />
   <div
-    @dblclick="$emit('change-status', specificTask.id)"
-    :class="[specificTask.done ? 'changedStatus' : '', 'task']"
+    @dblclick="$emit('change-status', Task.id)"
+    :class="[Task.done ? 'changedStatus' : '', 'task']"
   >
     <h2 class="list-group-item">
-      {{ specificTask.text }}
+      {{ Task.text }}
       <i
-        @click="onDelete(specificTask.id)"
+        @click="onDelete(Task.id)"
         class="fa fa-close"
         style="font-size:48px;color:red"
       ></i>
@@ -20,12 +20,9 @@
 
 <script>
 export default {
-  name: "SpecificTask",
-  data() {
-    return {};
-  },
+  name: "Task",
   props: {
-    specificTask: Object,
+    Task: Object,
   },
   methods: {
     onDelete(id) {

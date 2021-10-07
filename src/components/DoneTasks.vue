@@ -1,18 +1,18 @@
 <template>
   <h1>Done Tasks</h1>
   <template v-for="doneTask in doneTasks" :key="doneTask.id">
-    <p :key="doneTask.id" v-if="doneTask.done">
+    <p>
       <SpecificTask
         @change-status="$emit('change-status', doneTask.id)"
         @delete-task="$emit('delete-task', doneTask.id)"
-        :specificTask="doneTask"
+        :Task="doneTask"
       />
     </p>
   </template>
 </template>
 
 <script>
-import SpecificTask from "./SpecificTask.vue";
+import SpecificTask from "./Task.vue";
 export default {
   name: "DoneTasks",
   props: {

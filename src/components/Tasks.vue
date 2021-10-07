@@ -2,12 +2,12 @@
   <UndoneTasks
     @change-status="changeStatus"
     @delete-task="deleteTask"
-    :undoneTasks="tasks"
+    :undoneTasks="showUndoneTasks"
   />
   <DoneTasks
     @change-status="changeStatus"
     @delete-task="deleteTask"
-    :doneTasks="tasks"
+    :doneTasks="showDoneTasks"
   />
 </template>
 
@@ -15,11 +15,6 @@
 import DoneTasks from "./DoneTasks.vue";
 import UndoneTasks from "./UndoneTasks.vue";
 export default {
-  // data() {
-  //   return {
-  //     specificTasks: [],
-  //   };
-  // },
   name: "Tasks",
   props: {
     tasks: Array,
@@ -30,29 +25,20 @@ export default {
     UndoneTasks,
   },
   emits: ["delete-task", "change-status"],
-  // computed: {
-  //   showTasks() {
-  //     return this.tasks;
-  //   },
-  // },
-  // created() {
-  //   this.specificTasks = this.tasks;
-  //   console.log(this.specificTasks + "created w tasks");
-  // },
+  computed: {
+    showDoneTasks() {
+      const doneTasks = this.tasks.filter((task) => task.done === true);
+      console.log(doneTasks);
+      return doneTasks;
+    },
+    showUndoneTasks() {
+      const undoneTasks = this.tasks.filter((task) => task.done !== true);
+      console.log(undoneTasks);
+      return undoneTasks;
+    },
+  },
+
   methods: {
-    // deleteTask(id) {
-    //   console.log(id + "dupa");
-    //   this.specificTasks = this.specificTasks.filter((task) => task.id !== id);
-    //   console.log(this.tasks);
-    //   console.log("wyjebales task");
-    // },
-    // changeStatus(id) {
-    //   console.log("chcesz zmienic task" + id);
-    //   this.specificTasks = this.specificTasks.map((task) =>
-    //     task.id === id ? { ...task, done: !task.done } : task
-    //   );
-    //   console.log(this.specificTasks);
-    // },
     deleteTask(id) {
       const taskToDelete = this.tasks.find((task) => task.id === id);
       console.log(taskToDelete.id);

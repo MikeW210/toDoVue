@@ -1,18 +1,18 @@
 <template>
   <h1>Undone Tasks</h1>
   <template v-bind:key="undoneTask.id" v-for="undoneTask in undoneTasks">
-    <p :key="undoneTask.done" v-if="!undoneTask.done">
+    <p>
       <SpecificTask
         @change-status="this.$emit('change-status', undoneTask.id)"
         @delete-task="$emit('delete-task', undoneTask.id)"
-        :specificTask="undoneTask"
+        :Task="undoneTask"
       />
     </p>
   </template>
 </template>
 
 <script>
-import SpecificTask from "./SpecificTask.vue";
+import SpecificTask from "./Task.vue";
 export default {
   name: "UndoneTasks",
   props: {

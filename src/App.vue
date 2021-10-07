@@ -62,11 +62,6 @@ export default {
       console.log(this.tasks);
     },
   },
-  // created() {
-  //   this.tasks = [
-
-  //   ];
-  // },
 };
 </script>
 
