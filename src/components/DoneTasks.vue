@@ -1,26 +1,34 @@
 <template>
   <h1>Done Tasks</h1>
   <template v-for="doneTask in doneTasks" :key="doneTask.id">
-    <p>
-      <SpecificTask
+    <div class="doneTasks">
+      <Task
         @change-status="$emit('change-status', doneTask.id)"
         @delete-task="$emit('delete-task', doneTask.id)"
-        :Task="doneTask"
+        :task="doneTask"
       />
-    </p>
+    </div>
   </template>
 </template>
 
 <script>
-import SpecificTask from "./Task.vue";
+import Task from "./Task.vue";
 export default {
   name: "DoneTasks",
   props: {
     doneTasks: Array,
   },
   components: {
-    SpecificTask,
+    Task,
   },
   emits: ["delete-task", "change-status"],
 };
 </script>
+<style scoped>
+.doneTasks {
+  padding: 0% 2%;
+}
+h1 {
+  padding: 0% 2%;
+}
+</style>

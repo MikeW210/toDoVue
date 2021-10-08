@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="addTask">
     <h1>Add task!</h1>
-    <form @submit="onSubmit">
+    <form class="formClass" @submit="onSubmit">
       <input
         type="text"
         class="input"
@@ -46,9 +46,11 @@ input[type="text"] {
   background-color: rgb(255, 255, 255);
   background-position: 10px 10px;
   background-repeat: no-repeat;
-  height: 40px;
-  width: 50%;
-  font-size: 20px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  height: 55px;
+  width: 80%;
+  font-size: 24px;
 }
 input[type="submit"] {
   background-color: #4caf50;
@@ -56,7 +58,23 @@ input[type="submit"] {
   color: white;
   padding: 16px 32px;
   text-decoration: none;
-  margin: 4px;
+
   cursor: pointer;
+  font-size: 20px;
+  border-radius: 10px;
+}
+.addTask {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2%;
+}
+
+.formClass {
+  display: flex;
+  justify-content: space-between;
+}
+.h1 {
+  justify-content: center;
 }
 </style>
