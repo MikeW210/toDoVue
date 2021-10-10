@@ -1,13 +1,13 @@
 <template>
-  <UndoneTasks
-    @change-status="changeStatus"
-    @delete-task="deleteTask"
-    :undoneTasks="showUndoneTasks"
-  />
   <DoneTasks
     @change-status="changeStatus"
     @delete-task="deleteTask"
     :doneTasks="showDoneTasks"
+  />
+  <UndoneTasks
+    @change-status="changeStatus"
+    @delete-task="deleteTask"
+    :undoneTasks="showUndoneTasks"
   />
 </template>
 

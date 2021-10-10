@@ -3,7 +3,7 @@
     <div class="header">
       <div class="days">
         <p class="day">{{ currentDay }}</p>
-        <p class="month-day">{{ currentMonthDay }}</p>
+        <p class="month-day">&nbsp;{{ currentMonthDay }}th</p>
         <p class="ammountOfTasks">{{ tasks.length }} tasks</p>
       </div>
 
@@ -72,6 +72,12 @@ export default {
           done: false,
           time: "19:39",
         },
+        {
+          id: 4,
+          text: "Kon zwalony",
+          done: true,
+          time: "23:39",
+        },
       ],
     };
   },
@@ -104,6 +110,7 @@ export default {
 
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@1,300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
 
 *,
 *::before,
@@ -112,7 +119,7 @@ export default {
 }
 
 body {
-  background: linear-gradient(35deg, #ff7e7c 50%, #733ceb 50%);
+  background: linear-gradient(25deg, #ff7e7c 50%, #733ceb 50%);
 }
 html {
   font-size: 16px;
@@ -124,6 +131,7 @@ html {
 
 #app {
   font-family: "Lato", sans-serif;
+  font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 1rem;
@@ -147,7 +155,7 @@ html {
   display: flex;
   flex-direction: column;
   font-size: 35px;
-  padding: 0em 1em;
+  padding: 0.2em 1em;
   position: relative;
   border-bottom: solid rgb(187, 185, 185) 0.5px;
 }
@@ -159,7 +167,7 @@ html {
 }
 .ammountOfTasks {
   color: #a7a4b6;
-  font-size: 20px;
+  font-size: 16px;
   display: inline-block;
   margin-left: auto;
   margin-bottom: 0;
@@ -171,8 +179,8 @@ html {
 }
 .month {
   padding: 0;
-  margin-top: 0;
-  font-size: 25px;
+  margin-top: 5px;
+  font-size: 17px;
   color: #a7a4b6;
 }
 .day {
@@ -180,11 +188,14 @@ html {
   font-weight: bold;
   margin-bottom: 0;
   padding: 0;
+  font-size: 31px;
 }
 .month-day {
   color: #8049fd;
   margin-bottom: 0;
   padding: 0;
+  font-weight: 500;
+  font-size: 31px;
 }
 .days {
   display: flex;
@@ -196,5 +207,8 @@ html {
   justify-content: flex-start;
   padding: 0;
   margin-top: auto;
+}
+.tasks {
+  padding-top: 1em;
 }
 </style>

@@ -1,5 +1,4 @@
 <template>
-  <h1>Undone Tasks</h1>
   <template v-bind:key="undoneTask.id" v-for="undoneTask in undoneTasks">
     <div class="undoneTasks">
       <Task

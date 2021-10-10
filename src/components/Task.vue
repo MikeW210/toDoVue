@@ -5,12 +5,15 @@
   />
   <div class="wholeTask">
     <div class="wholeTaskWithoutX" @dblclick="onDelete(task.id)">
-      <input
-        class="checkbox"
-        :checked="task.done"
-        type="checkbox"
-        @click="$emit('change-status', task.id)"
-      />
+      <label class="container">
+        <input
+          class="checkbox"
+          :checked="task.done"
+          type="checkbox"
+          @click="$emit('change-status', task.id)"
+        />
+        <span class="checkmark"></span>
+      </label>
       <h2 :class="[task.done ? 'changedStatus' : 'undoneTasks', 'task']">
         {{ task.text }}
       </h2>
@@ -39,7 +42,7 @@ export default {
   display: flex;
   border-radius: 10px;
   flex: 6;
-  font-size: 25px;
+  font-size: 22px;
 }
 
 .task h2 {
@@ -74,9 +77,10 @@ template :hover {
   flex: 1;
   padding: 0em 1em;
 }
-.checkbox {
-  height: 25px;
-  width: 25px;
+.checkbox:checked {
+  margin-right: 2em;
+  transform: scale(0.9);
+  color: red;
 }
 .done-time {
   color: #dcd9e8;
@@ -84,5 +88,66 @@ template :hover {
 .checkbox {
   height: 20px;
   width: 20px;
+}
+.container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 16px;
+  width: 16px;
+  outline: solid 1px #8e88a7;
+  border-radius: 3px;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  background-color: #ff626f;
+}
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+  left: 6px;
+  top: 3px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
 }
 </style>

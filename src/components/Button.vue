@@ -38,7 +38,7 @@ export default {
   border-radius: 50%;
   cursor: pointer;
   text-decoration: none;
-  font-size: 25px;
+  font-size: 15px;
   font-family: inherit;
   box-shadow: 2px 2px 2px rgb(149, 147, 147);
 }

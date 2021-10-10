@@ -59,24 +59,27 @@ input[type="text"] {
   border-top-style: hidden;
   border-right-style: hidden;
   border-left-style: hidden;
+  border-bottom-style: hidden;
   outline: none;
-  border-bottom: solid rgb(187, 185, 185) 0.5px;
+  /* border-bottom: solid rgb(187, 185, 185) 0.5px; */
   height: 40px;
   font-size: 24px;
+  border-radius: 10px;
   width: 100%;
+  box-shadow: 0px 0px 15px 4px rgba(0, 0, 0, 0.1);
 }
 .submit-button {
   background-color: #4caf50;
   border: none;
   color: white;
-  height: 40px;
+  height: 50px;
   right: 20px;
-  width: 40px;
+  width: 50px;
   text-decoration: none;
   margin: 5px;
   cursor: pointer;
-  font-size: 20px;
-  border-radius: 20px;
+  font-size: 30px;
+  border-radius: 50%;
   margin-top: 1em;
   box-shadow: 2px 2px 2px rgb(149, 147, 147);
 }

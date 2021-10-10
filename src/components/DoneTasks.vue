@@ -1,6 +1,4 @@
 <template>
-  <h1>Done Tasks</h1>
-
   <template v-for="doneTask in doneTasks" :key="doneTask.id">
     <div class="doneTasks">
       <Task
