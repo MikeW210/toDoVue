@@ -1,22 +1,35 @@
 <template>
   <div class="container">
     <div class="header">
-      <p>{{ currentDate }}</p>
-      <p class="ammountOfTasks">Tasks {{ tasks.length }}</p>
+      <div class="days">
+        <p class="day">{{ currentDay }}</p>
+        <p class="month-day">{{ currentMonthDay }}</p>
+        <p class="ammountOfTasks">{{ tasks.length }} tasks</p>
+      </div>
+
+      <div class="date">
+        <p class="month">{{ currentTime }}</p>
+      </div>
     </div>
-    <div class="buttonPlacement">
-      <Button
-        @toggle-add-task="toggleAddTask"
-        :color="showAddTask ? 'red' : 'green'"
-        :text="showAddTask ? 'x' : '+'"
+
+    <div class="btn-anchor">
+      <div class="button-placement">
+        <Button
+          @toggle-add-task="toggleAddTask"
+          :color="showAddTask ? '#FF5B6A' : '#FF616D'"
+          :showAddTask="showAddTask"
+        />
+      </div>
+    </div>
+
+    <AddTask v-if="showAddTask" @add-task="addTask" />
+    <div class="tasks">
+      <Tasks
+        @delete-task="deleteTask"
+        @change-status="changeStatus"
+        :tasks="tasks"
       />
     </div>
-    <AddTask v-if="showAddTask" @add-task="addTask" />
-    <Tasks
-      @delete-task="deleteTask"
-      @change-status="changeStatus"
-      :tasks="tasks"
-    />
   </div>
 </template>
 
@@ -24,6 +37,7 @@
 import Tasks from "./components/Tasks";
 import AddTask from "./components/AddTask";
 import Button from "./components/Button";
+import dayjs from "dayjs";
 
 export default {
   name: "App",
@@ -35,29 +49,31 @@ export default {
   data() {
     return {
       showAddTask: false,
-      currentDate: "",
+      currentDay: dayjs().format("dddd, "),
+      currentMonthDay: dayjs().format("D"),
+      currentTime: dayjs().format("MMMM"),
       tasks: [
         {
           id: 1,
           text: "umyj dupe",
           done: false,
+          time: "10:30",
         },
         {
           id: 2,
           text: "Brawo umyłeś dupę!",
           done: true,
+          time: "12:22",
         },
 
         {
           id: 3,
           text: "Weź no się za nogi bocianie",
           done: false,
+          time: "19:39",
         },
       ],
     };
-  },
-  created() {
-    setInterval(this.currentDateTime, 1000);
   },
   methods: {
     toggleAddTask() {
@@ -82,81 +98,103 @@ export default {
       );
       console.log(this.tasks);
     },
-    currentDateTime() {
-      const current = new Date();
-      const date =
-        current.getFullYear() +
-        "-" +
-        (current.getMonth() + 1) +
-        "-" +
-        current.getDate();
-      const time =
-        current.getHours() +
-        ":" +
-        current.getMinutes() +
-        ":" +
-        current.getSeconds();
-      const dateTime = date + " " + time;
-      this.currentDate = dateTime;
-    },
   },
 };
 </script>
 
 <style>
-body,
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@1,300&display=swap");
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(35deg, #ff7e7c 50%, #733ceb 50%);
+}
 html {
+  font-size: 16px;
   padding: 0;
   margin: 0;
   width: 100%;
   height: 100%;
 }
-body {
-  background-color: black;
-}
-/* @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap"); */
-@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@1,300&display=swap");
+
 #app {
   font-family: "Lato", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 1rem;
 }
+</style>
 
+<style scoped>
 .container {
+  width: 500px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 20px;
   display: flex;
-  margin: 2%;
   background: white;
-  max-width: 50%;
   flex-direction: column;
   border: 1px solid steelblue;
   border-radius: 5px;
-}
-.button {
-  align-content: flex-end;
-  display: inline-block;
-  background: #000;
-  color: #fff;
-  border: none;
-  padding: 8px 20px;
-  margin: 5px;
-  border-radius: 50%;
-  cursor: pointer;
-  text-decoration: none;
-  font-size: 25px;
-  font-family: inherit;
+  position: relative;
 }
 .header {
   display: flex;
+  flex-direction: column;
   font-size: 35px;
-  justify-content: space-between;
-  padding: 2% 2% 0% 2%;
+  padding: 0em 1em;
+  position: relative;
+  border-bottom: solid rgb(187, 185, 185) 0.5px;
 }
-.buttonPlacement {
+.button-placement {
   display: flex;
-  justify-content: flex-end;
-  padding: 0% 2%;
+  right: 20px;
+  transform: translateY(-50%);
+  position: absolute;
 }
 .ammountOfTasks {
+  color: #a7a4b6;
   font-size: 20px;
+  display: inline-block;
+  margin-left: auto;
+  margin-bottom: 0;
+  padding: 0;
+}
+.btn-anchor {
+  width: 100%;
+  height: 0;
+}
+.month {
+  padding: 0;
+  margin-top: 0;
+  font-size: 25px;
+  color: #a7a4b6;
+}
+.day {
+  color: #8049fd;
+  font-weight: bold;
+  margin-bottom: 0;
+  padding: 0;
+}
+.month-day {
+  color: #8049fd;
+  margin-bottom: 0;
+  padding: 0;
+}
+.days {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.date {
+  display: flex;
+  justify-content: flex-start;
+  padding: 0;
+  margin-top: auto;
 }
 </style>

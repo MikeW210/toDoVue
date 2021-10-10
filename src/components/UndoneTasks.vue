@@ -26,10 +26,7 @@ export default {
 </script>
 
 <style scoped>
-.undoneTasks {
-  padding: 0% 2%;
-}
 h1 {
-  padding: 0% 2%;
+  padding-left: 0.5em;
 }
 </style>

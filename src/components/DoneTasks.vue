@@ -1,5 +1,6 @@
 <template>
   <h1>Done Tasks</h1>
+
   <template v-for="doneTask in doneTasks" :key="doneTask.id">
     <div class="doneTasks">
       <Task
@@ -18,6 +19,11 @@ export default {
   props: {
     doneTasks: Array,
   },
+  data() {
+    return {
+      tasks: [],
+    };
+  },
   components: {
     Task,
   },
@@ -25,10 +31,7 @@ export default {
 };
 </script>
 <style scoped>
-.doneTasks {
-  padding: 0% 2%;
-}
 h1 {
-  padding: 0% 2%;
+  padding-left: 0.5em;
 }
 </style>

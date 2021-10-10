@@ -3,18 +3,19 @@
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
   />
-  <div
-    @dblclick="$emit('change-status', task.id)"
-    :class="[task.done ? 'changedStatus' : 'undoneTasks', 'task']"
-  >
-    <h2 class="list-group-item">
-      {{ task.text }}
-      <i
-        @click="onDelete(task.id)"
-        class="fa fa-close"
-        style="font-size:48px;color:red"
-      ></i>
-    </h2>
+  <div class="wholeTask">
+    <div class="wholeTaskWithoutX" @dblclick="onDelete(task.id)">
+      <input
+        class="checkbox"
+        :checked="task.done"
+        type="checkbox"
+        @click="$emit('change-status', task.id)"
+      />
+      <h2 :class="[task.done ? 'changedStatus' : 'undoneTasks', 'task']">
+        {{ task.text }}
+      </h2>
+      <p :class="[task.done ? 'done-time' : 'undone-time']">{{ task.time }}</p>
+    </div>
   </div>
 </template>
 
@@ -35,22 +36,53 @@ export default {
 
 <style scoped>
 .task {
+  display: flex;
   border-radius: 10px;
+  flex: 6;
+  font-size: 25px;
 }
 
 .task h2 {
   display: flex;
   align-items: center;
-  justify-content: space-between;
 }
 .changedStatus {
+  color: #dcd9e8;
   text-decoration: line-through;
 }
-.undoneTasks.hover {
+.undoneTasks {
+  color: #8e88a7;
+}
+template :hover {
   color: blue;
 }
-.task h2:hover {
+.wholeTask:hover {
   background: rgb(243, 243, 255);
   border-left: solid blue 4px;
+}
+
+.wholeTask {
+  display: flex;
+  align-items: center;
+  border-bottom: solid #e0e4eb 1px;
+  padding: 5px;
+}
+.wholeTaskWithoutX {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1;
+  padding: 0em 1em;
+}
+.checkbox {
+  height: 25px;
+  width: 25px;
+}
+.done-time {
+  color: #dcd9e8;
+}
+.checkbox {
+  height: 20px;
+  width: 20px;
 }
 </style>
