@@ -4,7 +4,10 @@
       <div class="days">
         <p class="day">{{ currentDay }}</p>
         <p class="month-day">&nbsp;{{ currentMonthDay }}th</p>
-        <p class="ammountOfTasks">{{ tasks.length }} tasks</p>
+        <div class="ammount">
+          <p class="ammountOfTasks">{{ tasks.length }}&nbsp;</p>
+          <p class="ammountOfTasksText">tasks</p>
+        </div>
       </div>
 
       <div class="date">
@@ -165,10 +168,23 @@ html {
   transform: translateY(-50%);
   position: absolute;
 }
+.ammount {
+  display: flex;
+  margin-left: auto;
+  align-items: flex-end;
+  padding-top: 20px;
+}
 .ammountOfTasks {
   color: #a7a4b6;
   font-size: 16px;
-  display: inline-block;
+  margin-left: auto;
+  margin-bottom: 0;
+  padding: 0;
+  font-weight: bold;
+}
+.ammountOfTasksText {
+  color: #a7a4b6;
+  font-size: 16px;
   margin-left: auto;
   margin-bottom: 0;
   padding: 0;

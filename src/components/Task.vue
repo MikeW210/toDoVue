@@ -63,6 +63,11 @@ template :hover {
   background: rgb(243, 243, 255);
   border-left: solid blue 4px;
 }
+.undone-time {
+  color: #8e88a7;
+  font-size: 15px;
+  font-weight: bold;
+}
 
 .wholeTask {
   display: flex;
@@ -84,6 +89,8 @@ template :hover {
 }
 .done-time {
   color: #dcd9e8;
+  font-size: 15px;
+  font-weight: bold;
 }
 .checkbox {
   height: 20px;
@@ -141,11 +148,11 @@ template :hover {
 /* Style the checkmark/indicator */
 .container .checkmark:after {
   left: 6px;
-  top: 3px;
+  top: 1px;
   width: 5px;
-  height: 10px;
+  height: 12px;
   border: solid white;
-  border-width: 0 3px 3px 0;
+  border-width: 0 2px 2px 0;
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
