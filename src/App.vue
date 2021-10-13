@@ -24,8 +24,9 @@
         />
       </div>
     </div>
-
-    <AddTask v-if="showAddTask" @add-task="addTask" />
+    <transition name="bounce">
+      <AddTask v-if="showAddTask" @add-task="addTask" />
+    </transition>
     <div class="tasks">
       <Tasks
         @delete-task="deleteTask"
@@ -226,5 +227,19 @@ html {
 }
 .tasks {
   padding-top: 1em;
+}
+.bounce-enter-active {
+  animation: bounce-in 0.25s;
+}
+.bounce-leave-active {
+  animation: bounce-in 0.25s reverse;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 </style>

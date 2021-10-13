@@ -10,9 +10,9 @@
           class="checkbox"
           :checked="task.done"
           type="checkbox"
-          @click="$emit('change-status', task.id)"
+          @click.stop="$emit('change-status', task.id)"
         />
-        <span class="checkmark"></span>
+        <div @dblclick.stop class="checkmark"></div>
       </label>
       <h2 :class="[task.done ? 'changedStatus' : 'undoneTasks', 'task']">
         {{ task.text }}
