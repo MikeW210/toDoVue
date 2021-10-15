@@ -1,7 +1,7 @@
 <template>
   <div class="addTask">
     <h1>Add task!</h1>
-    <form class="formClass" @submit="onSubmit">
+    <form class="formClass" @submit.prevent="addTask">
       <input
         type="text"
         class="input"
@@ -25,6 +25,7 @@
 
 <script>
 import dayjs from "dayjs";
+// import { mapActions } from "vuex";
 export default {
   name: "AddTask",
   data() {
@@ -35,18 +36,29 @@ export default {
     };
   },
   methods: {
-    onSubmit(e) {
-      e.preventDefault();
+    addTask() {
       const newTask = {
         id: Math.floor(Math.random() * 1000),
         text: this.taskText,
         done: false,
         time: dayjs().format("HH:mm"),
       };
-      console.log(newTask);
-      this.$emit("add-task", newTask);
+      this.$store.commit("add_task", newTask);
       this.taskText = "";
     },
+
+    // onSubmit(e) {
+    //   e.preventDefault();
+    //   const newTask = {
+    //     id: Math.floor(Math.random() * 1000),
+    //     text: this.taskText,
+    //     done: false,
+    //     time: dayjs().format("HH:mm"),
+    //   };
+    //   console.log(newTask);
+    //   this.$emit("add-task", newTask);
+    //   this.taskText = "";
+    // },
   },
 };
 </script>

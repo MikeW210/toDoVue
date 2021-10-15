@@ -4,13 +4,13 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
   />
   <div class="wholeTask">
-    <div class="wholeTaskWithoutX" @dblclick="onDelete(task.id)">
+    <div class="wholeTaskWithoutX" @dblclick="deleteTask(task.id)">
       <label class="container">
         <input
           class="checkbox"
           :checked="task.done"
           type="checkbox"
-          @click.stop="$emit('change-status', task.id)"
+          @click.stop="changeStatus(task.id)"
         />
         <div @dblclick.stop class="checkmark"></div>
       </label>
@@ -29,8 +29,13 @@ export default {
     task: Object,
   },
   methods: {
-    onDelete(id) {
-      this.$emit("delete-task", id);
+    changeStatus(id) {
+      console.log(id);
+      this.$store.commit("changeStatus", id);
+    },
+    deleteTask(id) {
+      id = this.task.id;
+      this.$store.commit("deleteTask", id);
     },
   },
   emits: ["delete-task", "change-status"],

@@ -5,11 +5,10 @@
         <p class="day">{{ currentDay }}</p>
         <p class="month-day">&nbsp;{{ currentMonthDay }}th</p>
         <div class="ammount">
-          <p class="ammountOfTasks">{{ tasks.length }}&nbsp;</p>
+          <p class="ammountOfTasks">{{ numberOfTasks }}&nbsp;</p>
           <p class="ammountOfTasksText">tasks</p>
         </div>
       </div>
-
       <div class="date">
         <p class="month">{{ currentTime }}</p>
       </div>
@@ -25,14 +24,11 @@
       </div>
     </div>
     <transition name="bounce">
-      <AddTask v-if="showAddTask" @add-task="addTask" />
+      <AddTask v-if="showAddTask" />
     </transition>
     <div class="tasks">
-      <Tasks
-        @delete-task="deleteTask"
-        @change-status="changeStatus"
-        :tasks="tasks"
-      />
+      <div v-for="task in allTasks" :key="task.id"></div>
+      <Tasks />
     </div>
   </div>
 </template>
@@ -41,6 +37,7 @@
 import Tasks from "./components/Tasks";
 import AddTask from "./components/AddTask";
 import Button from "./components/Button";
+import { mapGetters } from "vuex";
 import dayjs from "dayjs";
 
 export default {
@@ -52,48 +49,28 @@ export default {
   },
   data() {
     return {
+      tasks: [],
       showAddTask: false,
       currentDay: dayjs().format("dddd, "),
       currentMonthDay: dayjs().format("D"),
       currentTime: dayjs().format("MMMM"),
-      tasks: [
-        {
-          id: 1,
-          text: "umyj dupe",
-          done: false,
-          time: "10:30",
-        },
-        {
-          id: 2,
-          text: "Brawo umyłeś dupę!",
-          done: true,
-          time: "12:22",
-        },
-
-        {
-          id: 3,
-          text: "Weź no się za nogi bocianie",
-          done: false,
-          time: "19:39",
-        },
-        {
-          id: 4,
-          text: "Kon zwalony",
-          done: true,
-          time: "23:39",
-        },
-      ],
     };
+  },
+  computed: {
+    ...mapGetters({
+      allTasks: "allTasks",
+      numberOfTasks: "numberOfTasks",
+    }),
   },
   methods: {
     toggleAddTask() {
       this.showAddTask = !this.showAddTask;
     },
-    addTask(task) {
-      console.log(task);
-      this.tasks.push(task);
-      console.log(this.tasks, "dodaes task");
-    },
+    // addTask(task) {
+    //   console.log(task);
+    //   this.tasks.push(task);
+    //   console.log(this.tasks, "dodaes task");
+    // },
 
     deleteTask(id) {
       console.log(id + "dupa");

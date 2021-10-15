@@ -12,13 +12,16 @@
 
 <script>
 import Task from "./Task.vue";
+import { mapGetters } from "vuex";
 export default {
   name: "UndoneTasks",
-  props: {
-    undoneTasks: Array,
-  },
   components: {
     Task,
+  },
+  computed: {
+    ...mapGetters({
+      undoneTasks: "undoneTasks",
+    }),
   },
   emits: ["delete-task", "change-status"],
 };

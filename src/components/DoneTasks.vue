@@ -12,15 +12,20 @@
 
 <script>
 import Task from "./Task.vue";
+import { mapGetters } from "vuex";
+
 export default {
   name: "DoneTasks",
-  props: {
-    doneTasks: Array,
-  },
+  props: {},
   data() {
     return {
       tasks: [],
     };
+  },
+  computed: {
+    ...mapGetters({
+      doneTasks: "doneTasks",
+    }),
   },
   components: {
     Task,
