@@ -23,22 +23,15 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
 export default {
   name: "Task",
   props: {
     task: Object,
   },
   methods: {
-    changeStatus(id) {
-      console.log(id);
-      this.$store.commit("changeStatus", id);
-    },
-    deleteTask(id) {
-      id = this.task.id;
-      this.$store.commit("deleteTask", id);
-    },
+    ...mapMutations(["deleteTask", "changeStatus"]),
   },
-  emits: ["delete-task", "change-status"],
 };
 </script>
 

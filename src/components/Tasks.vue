@@ -14,8 +14,5 @@ export default {
     DoneTasks,
     UndoneTasks,
   },
-  // emits: ["delete-task", "change-status"],
-
-  computed: {},
 };
 </script>

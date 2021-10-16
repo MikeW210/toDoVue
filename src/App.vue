@@ -23,7 +23,7 @@
         />
       </div>
     </div>
-    <transition name="bounce">
+    <transition name="fade">
       <AddTask v-if="showAddTask" />
     </transition>
     <div class="tasks">
@@ -65,25 +65,6 @@ export default {
   methods: {
     toggleAddTask() {
       this.showAddTask = !this.showAddTask;
-    },
-    // addTask(task) {
-    //   console.log(task);
-    //   this.tasks.push(task);
-    //   console.log(this.tasks, "dodaes task");
-    // },
-
-    deleteTask(id) {
-      console.log(id + "dupa");
-      this.tasks = this.tasks.filter((task) => task.id !== id);
-      console.log(this.tasks);
-      console.log("wyjebales task");
-    },
-    changeStatus(id) {
-      console.log("chcesz zmienic task" + id);
-      this.tasks = this.tasks.map((task) =>
-        task.id === id ? { ...task, done: !task.done } : task
-      );
-      console.log(this.tasks);
     },
   },
 };
@@ -205,18 +186,16 @@ html {
 .tasks {
   padding-top: 1em;
 }
-.bounce-enter-active {
-  animation: bounce-in 0.25s;
+.fade-enter-from {
+  opacity: 0;
 }
-.bounce-leave-active {
-  animation: bounce-in 0.25s reverse;
+.fade-enter-active {
+  transition: opacity 0.25s ease;
 }
-@keyframes bounce-in {
-  0% {
-    transform: scale(0);
-  }
-  100% {
-    transform: scale(1);
-  }
+.fade-leave-active {
+  transition: opacity 0.25s ease;
+}
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

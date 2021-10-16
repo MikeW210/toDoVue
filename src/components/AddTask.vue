@@ -1,6 +1,6 @@
 <template>
   <div class="addTask">
-    <h1>Add task!</h1>
+    <h1 class="text">Add task!</h1>
     <form class="formClass" @submit.prevent="addTask">
       <input
         type="text"
@@ -25,7 +25,7 @@
 
 <script>
 import dayjs from "dayjs";
-// import { mapActions } from "vuex";
+import { mapMutations } from "vuex";
 export default {
   name: "AddTask",
   data() {
@@ -36,6 +36,7 @@ export default {
     };
   },
   methods: {
+    ...mapMutations({ createTask: "addTask" }),
     addTask() {
       const newTask = {
         id: Math.floor(Math.random() * 1000),
@@ -43,22 +44,9 @@ export default {
         done: false,
         time: dayjs().format("HH:mm"),
       };
-      this.$store.commit("add_task", newTask);
+      this.createTask(newTask);
       this.taskText = "";
     },
-
-    // onSubmit(e) {
-    //   e.preventDefault();
-    //   const newTask = {
-    //     id: Math.floor(Math.random() * 1000),
-    //     text: this.taskText,
-    //     done: false,
-    //     time: dayjs().format("HH:mm"),
-    //   };
-    //   console.log(newTask);
-    //   this.$emit("add-task", newTask);
-    //   this.taskText = "";
-    // },
   },
 };
 </script>
@@ -73,12 +61,11 @@ input[type="text"] {
   border-left-style: hidden;
   border-bottom-style: hidden;
   outline: none;
-  /* border-bottom: solid rgb(187, 185, 185) 0.5px; */
   height: 40px;
   font-size: 24px;
-  border-radius: 10px;
+  border-radius: 5px;
   width: 100%;
-  box-shadow: 0px 0px 15px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 5px 13px 30px -10px rgba(66, 68, 90, 1);
 }
 .submit-button {
   background-color: #4caf50;
@@ -106,5 +93,9 @@ input[type="text"] {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.text {
+  color: #8049fd;
+  font-size: 31px;
 }
 </style>
